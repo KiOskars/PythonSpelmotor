@@ -1,18 +1,19 @@
 from src.tools.Logging import Log
 
+
 class InitializerIf:
     def __init__(self, name: str, description):
         self.setName(name)
-        self.description = description
+        self.__setattr__('description', description)
         self.__setattr__('type', type(self).__name__)
 
         Log.out("Initialiserade",
-                 self.__str__(),
+                self.__str__(),
                 "== * Attribut * ==",
                 **self.__dict__)
 
     def __str__(self):
-        return self.__getattribute__('name') + "\n" + self.description
+        return self.__getattribute__('name') + "\n" + self.__getattribute__('description')
 
     def setName(self, name):
         self.__setattr__('name', name + " - " + type(self).__name__)

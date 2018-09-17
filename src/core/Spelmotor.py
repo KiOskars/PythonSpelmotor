@@ -1,13 +1,15 @@
-from turtle import *
-
 from src.core import *
 
 from src.game import *
+from src.graphics import GraphicsEngine
 from src.tools.Logging import Log
+
 
 class Spelmotor(InitializerIf):
     def __init__(self):
         super(Spelmotor, self).__init__("Frogger Game Engine", "En spelmotor för att skapa spelet Frogger")
+
+        self.__setattr__('GraphicsEngine', GraphicsEngine())
 
         turtleInit = Turtle()
         turtleInit.hideturtle()
