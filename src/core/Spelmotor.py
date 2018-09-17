@@ -1,6 +1,9 @@
 from turtle import *
 
-from src.core import InitializerIf
+from src.core import *
+
+from src.game import *
+from src.tools.Logging import Log
 
 class Spelmotor(InitializerIf):
     def __init__(self):
@@ -12,3 +15,13 @@ class Spelmotor(InitializerIf):
         self.window.bgcolor("light green")
 
         self.window.listen()
+
+    def play(self):
+        player = Entity("Player", "turtle", 90, 10, 0, 0, "blue")
+        player.defineKeys(self.window)
+
+        enemy = Entity("Enemy", "arrow", 0, 10, -500, 0, "red")
+
+        done()
+
+        Log.out("Stänger ner applikationen och avslutar processen", "Ha en bra dag!")
