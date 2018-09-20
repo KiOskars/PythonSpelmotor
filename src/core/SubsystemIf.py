@@ -10,3 +10,11 @@ class SubsystemIf(InitializerIf):
     @abstractmethod
     def initialize(self):
         Log.out("Initialiserar subsystem: " + self.__getattribute__('name'))
+
+        return 0
+
+    def deinitialize(self):
+        Log.out("Tar bort subsystem: " + self.__getattribute__('name'))
+
+        return 0
+

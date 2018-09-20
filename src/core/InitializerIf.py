@@ -22,5 +22,8 @@ class InitializerIf:
     def setName(self, name):
         self.__setattr__('name', name + " - " + type(self).__name__)
 
+    def getName(self):
+        return self.__getattribute__('name')
+
     def printAttributes(self):
         Log.out(**self.__dict__)
