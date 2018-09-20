@@ -1,4 +1,4 @@
-from src.core import SubsystemIf
+from src.core import *
 
 
 class GraphicsEngine(SubsystemIf):

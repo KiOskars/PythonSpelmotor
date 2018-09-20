@@ -4,12 +4,11 @@ from src.game import *
 from src.graphics import GraphicsEngine
 from src.tools.Logging import Log
 
-
-class Spelmotor(InitializerIf):
+class Spelmotor(SubsystemIf):
     def __init__(self):
         super(Spelmotor, self).__init__("Frogger Game Engine", "En spelmotor för att skapa spelet Frogger")
 
-        self.__setattr__('GraphicsEngine', GraphicsEngine())
+        self.initializeSubSystem(GraphicsEngine())
 
         turtleInit = Turtle()
         turtleInit.hideturtle()
@@ -27,3 +26,10 @@ class Spelmotor(InitializerIf):
         done()
 
         Log.out("Stänger ner applikationen och avslutar processen", "Ha en bra dag!")
+
+
+    def initializeSubSystem(self, subsystem: SubsystemIf):
+        if not self.__dict__.__contains__(subsystem):
+            self.__setattr__(subsystem.__getattribute__('name'), subsystem)
+
+        subsystem.initialize()

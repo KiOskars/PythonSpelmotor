@@ -8,7 +8,7 @@ class Log():
         super(Log, self).__init__()
 
     @staticmethod
-    def out(showCaller = True, *args, **kwargs):
+    def out(*args, **kwargs):
         date = "======== " + datetime.datetime.now().__str__() + " ========"
         endLine = "============================================"
         stack = inspect.stack()
@@ -16,8 +16,7 @@ class Log():
         the_method = stack[1][0].f_code.co_name
 
         print(date)
-        if showCaller:
-            print("{}.{}() loggade följande information:".format(str(the_class), the_method))
+        print("{}.{}() loggade följande information:".format(str(the_class), the_method))
 
         for arg in args:
             print(arg)

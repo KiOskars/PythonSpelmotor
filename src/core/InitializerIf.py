@@ -1,3 +1,5 @@
+from abc import abstractmethod
+
 from src.tools.Logging import Log
 
 
@@ -7,6 +9,8 @@ class InitializerIf:
         self.__setattr__('description', description)
         self.__setattr__('type', type(self).__name__)
 
+    @abstractmethod
+    def initialize(self):
         Log.out("Initialiserade",
                 self.__str__(),
                 "== * Attribut * ==",

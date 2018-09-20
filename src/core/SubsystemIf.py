@@ -1,8 +1,7 @@
 from abc import abstractmethod
 
+from src.core import *
 from src.tools.Logging import Log
-from .InitializerIf import InitializerIf
-
 
 class SubsystemIf(InitializerIf):
     def __init__(self, name, description):
@@ -10,5 +9,4 @@ class SubsystemIf(InitializerIf):
 
     @abstractmethod
     def initialize(self):
-        Log.out("Initialiserade " + self.__getattribute__('name'))
-
+        Log.out("Initialiserar subsystem: " + self.__getattribute__('name'))
