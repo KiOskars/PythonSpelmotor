@@ -22,12 +22,15 @@ class Spelmotor(SubsystemIf):
 
     def initializeSubsystem(self, key, subsystem: SubsystemIf):
         if not self.__dict__.__contains__(subsystem):
-            Log.out("Subsystemet fanns inte i {}, sätter attributet {} som {}".format(self.getName(),
-                                                                                      key,
-                                                                                      subsystem.getName()))
+            Log.out("Subsystemet, {}, fanns inte i {}, sätter attributet {} som {}".format(subsystem.__getattribute__('type'),
+                                                                                           self.getName(),
+                                                                                           key,
+                                                                                           subsystem.getName()))
             self.__setattr__(key, subsystem)
 
-        Log.out("Inititaliserar {} som attribut {}".format(subsystem.getName(), key))
+        Log.out("{} sätter {} som attribut {}".format(self.getName(), subsystem.getName(), key),
+                "Följande attribut återfinns i {}".format(self.getName()), **self.__dict__)
+
         return subsystem.initialize()
 
     def deinitializeSubsystem(self, key):

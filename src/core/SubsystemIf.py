@@ -9,7 +9,7 @@ class SubsystemIf(InitializerIf):
 
     @abstractmethod
     def initialize(self):
-        Log.out("Initialiserar subsystem: " + self.__getattribute__('name'))
+        Log.out("Initialiserar subsystem: " + self.__getattribute__('name'), **self.__dict__)
 
         return 0
 
