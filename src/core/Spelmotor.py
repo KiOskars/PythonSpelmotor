@@ -1,3 +1,5 @@
+from curses import ascii
+
 from src.core import *
 
 from src.game import *
@@ -8,17 +10,37 @@ class Spelmotor(SubsystemIf):
     def __init__(self):
         super(Spelmotor, self).__init__("Frogger Game Engine", "En spelmotor för att skapa spelet Frogger")
 
+    def initialize(self):
         self.initializeSubsystem('grafikmotor', GraphicsEngine())
 
-    def play(self):
         player = Entity("Player", "turtle", 90, 10, 0, 0, "blue")
         player.defineKeys(self.getSubsystem('grafikmotor').__getattribute__('window'))
 
         enemy = Entity("Enemy", "arrow", 0, 10, -500, 0, "red")
 
+        self.__setattr__('isInitialized', True)
+        self.__setattr__('isRunning', False)
+
+        return 0
+
+    def deinitialize(self):
         done()
 
+        self.getSubsystem('grafikmotor').deinitialize()
+
         Log.out("Stänger ner applikationen och avslutar processen", "Ha en bra dag!")
+
+        return 0
+
+    def run(self):
+        if self.__getattribute__('isInitialized') is True:
+            self.__setattr__('isRunning', True)
+
+        grafikmotor = GraphicsEngine(self.getSubsystem('grafikmotor'))
+
+        while self.__getattribute__('isRunning') is True:
+            if grafikmotor.getWindow():
+                break
 
     def initializeSubsystem(self, key, subsystem: SubsystemIf):
         if not self.__dict__.__contains__(subsystem):

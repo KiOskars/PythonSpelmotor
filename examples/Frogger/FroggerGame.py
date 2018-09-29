@@ -2,4 +2,7 @@ from src.core import Spelmotor
 
 engine = Spelmotor()
 
-engine.play()
+if engine.initialize() == 0:
+    engine.run()
+
+engine.deinitialize()

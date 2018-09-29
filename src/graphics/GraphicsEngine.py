@@ -12,6 +12,9 @@ class GraphicsEngine(SubsystemIf):
         turtleInit.hideturtle()
 
         self.__setattr__('window', turtleInit.screen)
-        window = self.__getattribute__('window')
+        window = self.getWindow()
         window.bgcolor("light green")
         window.listen()
+
+    def getWindow(self) -> TurtleScreen:
+        return self.__getattribute__('window')
